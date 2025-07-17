@@ -574,10 +574,14 @@ const ContactForm = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
                 body: JSON.stringify(webhookData)
             });
 
+            // Log response for debugging
+            console.log('Webhook response status:', response.status);
+            
             if (response.ok) {
                 this.showSuccessMessage(form, fullName);
                 form.reset();
@@ -589,10 +593,22 @@ const ContactForm = {
                     subject: subject
                 });
             } else {
-                throw new Error('Server responded with an error');
+                const errorText = await response.text();
+                console.error('Webhook error response:', errorText);
+                throw new Error(`Server responded with status ${response.status}`);
             }
         } catch (error) {
             console.error('Form submission error:', error);
+            console.error('Error details:', {
+                message: error.message,
+                stack: error.stack,
+                formData: {
+                    fullName: fullName,
+                    email: email,
+                    subject: subject,
+                    message: message.substring(0, 100) + '...'
+                }
+            });
             this.showErrorMessage(form);
         } finally {
             this.hideLoadingState(form);
@@ -641,7 +657,7 @@ const ContactForm = {
     },
 
     showLoadingState: function(form) {
-        const button = form.querySelector('.submit-btn');
+        const button = form.querySelector('.contact-submit-btn');
         const span = button.querySelector('span');
         const originalText = span.textContent;
         button.dataset.originalText = originalText;
@@ -651,7 +667,7 @@ const ContactForm = {
     },
 
     hideLoadingState: function(form) {
-        const button = form.querySelector('.submit-btn');
+        const button = form.querySelector('.contact-submit-btn');
         const span = button.querySelector('span');
         span.textContent = button.dataset.originalText;
         button.querySelector('i').className = 'fas fa-paper-plane';
@@ -692,6 +708,7 @@ const ContactForm = {
                 </div>
             `;
             messageDiv.style.display = 'block';
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
 };
