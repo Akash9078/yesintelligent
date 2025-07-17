@@ -177,7 +177,7 @@ const Newsletter = {
         });
     },
 
-    handleSubmit: function(e) {
+    handleSubmit: async function(e) {
         e.preventDefault();
         
         const form = e.target;
@@ -190,18 +190,51 @@ const Newsletter = {
             return;
         }
 
-        // Log analytics event
-        Utils.logEvent('newsletter_signup', {
-            page: Utils.getCurrentPage(),
-            name: name,
-            email: email
-        });
+        // Show loading state
+        this.showLoadingState(form);
 
-        // Show success message
-        this.showSuccessMessage(form);
-        
-        // Reset form
-        form.reset();
+        try {
+            // Prepare data for webhook
+            const webhookData = {
+                name: name,
+                email: email,
+                source: 'Newsletter Signup',
+                page: window.location.href,
+                timestamp: new Date().toISOString(),
+                type: 'newsletter_subscription'
+            };
+
+            // Send to webhook
+            const response = await fetch('https://n8ndroplet.yesintelligent.com/webhook/eca518a8-5809-434a-a1c1-903144ba2bcc', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(webhookData)
+            });
+
+            if (response.ok) {
+                // Log analytics event
+                Utils.logEvent('newsletter_signup', {
+                    page: Utils.getCurrentPage(),
+                    name: name,
+                    email: email
+                });
+
+                // Show success message
+                this.showSuccessMessage(form);
+                
+                // Reset form
+                form.reset();
+            } else {
+                throw new Error('Server responded with an error');
+            }
+        } catch (error) {
+            console.error('Newsletter subscription error:', error);
+            this.showErrorMessage(form);
+        } finally {
+            this.hideLoadingState(form);
+        }
     },
 
     validateForm: function(name, email) {
@@ -219,11 +252,33 @@ const Newsletter = {
         return true;
     },
 
+    showLoadingState: function(form) {
+        const button = form.querySelector('button[type="submit"]');
+        if (button) {
+            button.disabled = true;
+            const originalText = button.textContent;
+            button.dataset.originalText = originalText;
+            button.textContent = 'Subscribing...';
+        }
+    },
+
+    hideLoadingState: function(form) {
+        const button = form.querySelector('button[type="submit"]');
+        if (button && button.dataset.originalText) {
+            button.disabled = false;
+            button.textContent = button.dataset.originalText;
+        }
+    },
+
     showSuccessMessage: function(form) {
         alert(CONFIG.NEWSLETTER_SUCCESS_MESSAGE);
         
         // Optional: Replace alert with custom modal in the future
         // this.showCustomModal(CONFIG.NEWSLETTER_SUCCESS_MESSAGE);
+    },
+
+    showErrorMessage: function(form) {
+        alert('Sorry, there was an error subscribing. Please try again or contact us directly.');
     }
 };
 
@@ -469,6 +524,179 @@ const Analytics = {
 };
 
 // ==========================================================================
+// CONTACT FORM MODULE
+// ==========================================================================
+
+const ContactForm = {
+    init: function() {
+        this.bindEvents();
+    },
+
+    bindEvents: function() {
+        const form = document.getElementById('contactForm');
+        if (form) {
+            form.addEventListener('submit', (e) => this.handleSubmit(e));
+        }
+    },
+
+    handleSubmit: async function(e) {
+        e.preventDefault();
+        
+        const form = e.target;
+        const formData = new FormData(form);
+        const fullName = formData.get('fullName');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+        
+        // Validation
+        if (!this.validateForm(fullName, email, subject, message)) {
+            return;
+        }
+
+        // Show loading state
+        this.showLoadingState(form);
+        
+        try {
+            // Prepare data for webhook
+            const webhookData = {
+                fullName: fullName,
+                email: email,
+                subject: subject,
+                message: message,
+                timestamp: new Date().toISOString(),
+                source: 'YesIntelligent Contact Form',
+                page: window.location.href
+            };
+
+            // Send to webhook
+            const response = await fetch('https://n8ndroplet.yesintelligent.com/webhook/14c2dfeb-491d-45b6-a4f4-da16b65ddb61', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(webhookData)
+            });
+
+            if (response.ok) {
+                this.showSuccessMessage(form, fullName);
+                form.reset();
+                
+                // Log analytics event
+                Utils.logEvent('contact_form_submit', {
+                    page: Utils.getCurrentPage(),
+                    fullName: fullName,
+                    subject: subject
+                });
+            } else {
+                throw new Error('Server responded with an error');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            this.showErrorMessage(form);
+        } finally {
+            this.hideLoadingState(form);
+        }
+    },
+
+    validateForm: function(fullName, email, subject, message) {
+        // Clear previous error messages
+        this.clearValidationErrors();
+        
+        let isValid = true;
+        
+        if (!fullName || fullName.trim().length < 2) {
+            this.showValidationError('Please enter your full name (at least 2 characters)');
+            isValid = false;
+        }
+        
+        if (!email || !this.isValidEmail(email)) {
+            this.showValidationError('Please enter a valid email address');
+            isValid = false;
+        }
+        
+        if (!subject) {
+            this.showValidationError('Please select a subject');
+            isValid = false;
+        }
+        
+        if (!message || message.trim().length < 10) {
+            this.showValidationError('Please enter a message (at least 10 characters)');
+            isValid = false;
+        }
+        
+        return isValid;
+    },
+
+    isValidEmail: function(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    },
+
+    clearValidationErrors: function() {
+        const messageDiv = document.querySelector('#form-message');
+        if (messageDiv) {
+            messageDiv.style.display = 'none';
+        }
+    },
+
+    showLoadingState: function(form) {
+        const button = form.querySelector('.submit-btn');
+        const span = button.querySelector('span');
+        const originalText = span.textContent;
+        button.dataset.originalText = originalText;
+        span.textContent = 'Sending...';
+        button.querySelector('i').className = 'fas fa-spinner fa-spin';
+        button.disabled = true;
+    },
+
+    hideLoadingState: function(form) {
+        const button = form.querySelector('.submit-btn');
+        const span = button.querySelector('span');
+        span.textContent = button.dataset.originalText;
+        button.querySelector('i').className = 'fas fa-paper-plane';
+        button.disabled = false;
+    },
+
+    showSuccessMessage: function(form, name) {
+        const messageDiv = form.querySelector('#form-message');
+        messageDiv.innerHTML = `
+            <div class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <strong>Thank you, ${name}!</strong><br>
+                We've received your information and will be in touch with you shortly.
+            </div>
+        `;
+        messageDiv.style.display = 'block';
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    },
+
+    showErrorMessage: function(form) {
+        const messageDiv = form.querySelector('#form-message');
+        messageDiv.innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Oops!</strong> Something went wrong. Please try again or contact us directly at akashkumarnaik948@gmail.com.
+            </div>
+        `;
+        messageDiv.style.display = 'block';
+    },
+
+    showValidationError: function(message) {
+        const messageDiv = document.querySelector('#form-message');
+        if (messageDiv) {
+            messageDiv.innerHTML = `
+                <div class="validation-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    ${message}
+                </div>
+            `;
+            messageDiv.style.display = 'block';
+        }
+    }
+};
+
+// ==========================================================================
 // MAIN INITIALIZATION
 // ==========================================================================
 
@@ -477,6 +705,7 @@ const YesIntelligent = {
         // Initialize all modules when DOM is ready
         Navigation.init();
         Newsletter.init();
+        ContactForm.init();
         ToolsPage.init();
         BlogPage.init();
         Animations.init();

@@ -1,0 +1,316 @@
+# ==============================================================================
+# YesIntelligent Website - Apache Configuration (.htaccess)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Rewrite Engine
+# ------------------------------------------------------------------------------
+RewriteEngine On
+
+# ------------------------------------------------------------------------------
+# HTTPS Redirect (Force SSL)
+# ------------------------------------------------------------------------------
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ------------------------------------------------------------------------------
+# WWW Redirect (Remove www)
+# ------------------------------------------------------------------------------
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# ------------------------------------------------------------------------------
+# Clean URLs & Redirects
+# ------------------------------------------------------------------------------
+
+# Redirect old paths to new blog structure
+RewriteRule ^best-ai-tools-youtubers-2025\.html$ /blog/best-ai-tools-youtubers-2025.html [R=301,L]
+RewriteRule ^automation-comparison-make-zapier-n8n\.html$ /blog/automation-comparison-make-zapier-n8n.html [R=301,L]
+RewriteRule ^automate-blog-writing-seo-blogify\.html$ /blog/automate-blog-writing-seo-blogify.html [R=301,L]
+RewriteRule ^build-ai-agent-n8n-chatsimple\.html$ /blog/build-ai-agent-n8n-chatsimple.html [R=301,L]
+
+# Remove .html extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Redirect .html to clean URLs
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1? [NC,L,R=301]
+
+# ------------------------------------------------------------------------------
+# Error Pages
+# ------------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html
+ErrorDocument 500 /500.html
+
+# ------------------------------------------------------------------------------
+# Security Headers
+# ------------------------------------------------------------------------------
+
+# X-Frame-Options
+Header always set X-Frame-Options "SAMEORIGIN"
+
+# X-Content-Type-Options
+Header always set X-Content-Type-Options "nosniff"
+
+# X-XSS-Protection
+Header always set X-XSS-Protection "1; mode=block"
+
+# Referrer Policy
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# Content Security Policy
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; frame-src https://www.google.com https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; connect-src 'self' https://www.google-analytics.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+
+# Permissions Policy
+Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()"
+
+# ------------------------------------------------------------------------------
+# Hide Server Information
+# ------------------------------------------------------------------------------
+ServerSignature Off
+
+# ------------------------------------------------------------------------------
+# File Access Protection
+# ------------------------------------------------------------------------------
+
+# Protect .htaccess file
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protect sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak|sql)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect WordPress files (if applicable)
+<Files wp-config.php>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# ------------------------------------------------------------------------------
+# GZIP Compression
+# ------------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+
+    # Remove browser bugs (only needed for really old browsers)
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    Header append Vary User-Agent
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# Browser Caching
+# ------------------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Video
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType video/mpeg "access plus 1 year"
+    
+    # CSS, JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Others
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 1 week"
+    
+    # Default
+    ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# Cache Control Headers
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    # Cache static assets
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Cache HTML files for shorter time
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+    
+    # Don't cache dynamic content
+    <FilesMatch "\.(php|cgi|pl|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# ETags
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# ------------------------------------------------------------------------------
+# MIME Types
+# ------------------------------------------------------------------------------
+<IfModule mod_mime.c>
+    # Web fonts
+    AddType application/font-woff woff
+    AddType application/font-woff2 woff2
+    AddType application/vnd.ms-fontobject eot
+    AddType font/truetype ttf
+    AddType font/opentype otf
+    
+    # Images
+    AddType image/webp webp
+    AddType image/svg+xml svg
+    
+    # Other
+    AddType application/javascript js
+    AddType text/css css
+    AddType application/json json
+    AddType application/manifest+json webmanifest
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# Directory Browsing
+# ------------------------------------------------------------------------------
+Options -Indexes
+
+# ------------------------------------------------------------------------------
+# Follow Symbolic Links
+# ------------------------------------------------------------------------------
+Options +FollowSymLinks
+
+# ------------------------------------------------------------------------------
+# Default Character Set
+# ------------------------------------------------------------------------------
+AddDefaultCharset UTF-8
+
+# ------------------------------------------------------------------------------
+# Prevent Image Hotlinking
+# ------------------------------------------------------------------------------
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?yesintelligent\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?google\. [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?bing\. [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?facebook\. [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?twitter\. [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [F,L]
+
+# ------------------------------------------------------------------------------
+# Block Bad Bots and Scrapers
+# ------------------------------------------------------------------------------
+RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+RewriteCond %{HTTP_USER_AGENT} ^(java|curl|wget) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (libwww-perl|curl|wget|python|nikto|scan) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%22|%27|%28|%3C|%3E|%00).*(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC]
+RewriteRule .* - [F,L]
+
+# ------------------------------------------------------------------------------
+# Block Suspicious Query Strings
+# ------------------------------------------------------------------------------
+RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} ^.*(\[|\]|\(|\)|<|>|ê|"|;|\?|\*|=$).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(%24&x).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(%0|%A|%B|%C|%D|%E|%F|127\.0).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(globals|encode|localhost|loopback).* [NC,OR]
+RewriteCond %{QUERY_STRING} ^.*(request|select|insert|union|declare).* [NC]
+RewriteRule ^(.*)$ - [F,L]
+
+# ------------------------------------------------------------------------------
+# Optimize Loading of Robots.txt and Sitemap
+# ------------------------------------------------------------------------------
+RewriteRule ^robots\.txt$ robots.txt [L]
+RewriteRule ^sitemap\.xml$ sitemap.xml [L]
+
+# ------------------------------------------------------------------------------
+# Prevent Access to Source Files
+# ------------------------------------------------------------------------------
+<FilesMatch "\.(psd|ai|sketch|fig|fla|swf|exe)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ------------------------------------------------------------------------------
+# Enable CORS for Web Fonts
+# ------------------------------------------------------------------------------
+<FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
+
+# ------------------------------------------------------------------------------
+# Remove Server Signature
+# ------------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# Redirect Mobile Users (Optional)
+# ------------------------------------------------------------------------------
+# Uncomment if you want to redirect mobile users to a mobile subdomain
+# RewriteCond %{HTTP_USER_AGENT} "android|blackberry|ipad|iphone|ipod|iemobile|opera mobile|palmos|webos|googlebot-mobile" [NC]
+# RewriteCond %{HTTP_HOST} !^m\.
+# RewriteRule ^(.*)$ https://m.yesintelligent.com/$1 [R=302,L]
+
+# ------------------------------------------------------------------------------
+# End of .htaccess
+# ------------------------------------------------------------------------------

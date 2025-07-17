@@ -12,7 +12,7 @@
     <meta property="og:title" content="How to Automate Blog Writing with SEO Writing + Blogify">
     <meta property="og:description" content="Create a seamless content production pipeline using AI writing tools for consistent, SEO-optimized blog posts.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://yesintelligent.com/automate-blog-writing-seo-blogify.html">
+    <meta property="og:url" content="https://yesintelligent.com/blog/automate-blog-writing-seo-blogify.html">
     <meta property="og:site_name" content="YesIntelligent">
     
     <!-- AI Search Optimization -->
@@ -61,7 +61,7 @@
         "dateModified": "2025-01-08",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://yesintelligent.com/automate-blog-writing-seo-blogify.html"
+            "@id": "https://yesintelligent.com/blog/automate-blog-writing-seo-blogify.html"
         }
     }
     </script>
@@ -84,9 +84,6 @@
                 </li>
                 <li class="nav-item" role="none">
                     <a href="../blog.html" class="nav-link" role="menuitem">Blog</a>
-                </li>
-                <li class="nav-item" role="none">
-                    <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                 </li>
             </ul>
             <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
@@ -582,45 +579,64 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo" itemscope itemtype="https://schema.org/WPFooter">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>YesIntelligent</h3>
-                    <p>Discover, automate, and earn smartly with the best AI tools and insights.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <div class="footer-brand">
+                        <img src="../images/logo.webp" alt="YesIntelligent Logo" class="footer-logo">
+                        <h3>YesIntelligent</h3>
+                    </div>
+                    <p>Your trusted source for AI tools, automation tutorials, and tech insights that actually work for creators and entrepreneurs.</p>
+                    <div class="social-links" role="list" aria-label="Follow us on social media">
+                        <a href="https://www.instagram.com/yesintelligent" target="_blank" rel="noopener" aria-label="Follow us on Instagram" role="listitem">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/yesintelligent" target="_blank" rel="noopener" aria-label="Connect with us on LinkedIn" role="listitem">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://x.com/yesintelligent" target="_blank" rel="noopener" aria-label="Follow us on X (Twitter)" role="listitem">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="tools.html">AI Tools</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                    </ul>
+                    <nav aria-label="Footer navigation">
+                        <ul>
+                            <li><a href="../tools.html">AI Tools Directory</a></li>
+                            <li><a href="../blog.html">Blog & Tutorials</a></li>
+                            <li><a href="../about.html">About Us</a></li>
+                            <li><a href="../contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <nav aria-label="Legal pages">
+                        <ul>
+                            <li><a href="../privacy.html">Privacy Policy</a></li>
+                            <li><a href="../terms.html">Terms of Service</a></li>
+                            <li><a href="../affiliate-disclosure.html">Affiliate Disclosure</a></li>
+                        </ul>
+                    </nav>
                 </div>
                 <div class="footer-section">
                     <h4>Featured Products</h4>
-                    <ul>
-                        <li><a href="https://yesintelligent.gumroad.com/l/free-api" target="_blank">Free API</a></li>
-                        <li><a href="https://yesintelligent.gumroad.com/l/free-api-extended-version" target="_blank">Paid API Pack</a></li>
-                        <li><a href="https://www.redbubble.com/people/ArtDesignStory/shop?asc=u" target="_blank">Redbubble Store</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>Created by Akash Naik</p>
-                    <p>YesIntelligent.com</p>
+                    <nav aria-label="Featured products">
+                        <ul>
+                            <li><a href="https://yesintelligent.gumroad.com/l/free-api" target="_blank" rel="noopener">Free API Collection</a></li>
+                            <li><a href="https://yesintelligent.gumroad.com/l/free-api-extended-version" target="_blank" rel="noopener">Premium API Pack</a></li>
+                            <li><a href="https://www.redbubble.com/people/ArtDesignStory/shop?asc=u" target="_blank" rel="noopener">Design Store</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 YesIntelligent. All rights reserved.</p>
-                <p class="affiliate-disclaimer">
-                    <small>Disclosure: This website contains affiliate links. We may earn a commission when you click on certain links.</small>
+                <p class="affiliate-disclaimer" itemscope itemtype="https://schema.org/DisclosureStatement" id="affiliate-disclosure">
+                    <strong>Affiliate Disclosure:</strong> 
+                    <small itemprop="text">This website contains affiliate links. We may earn a commission when you click on certain links or make purchases through them, at no additional cost to you. This helps support our content creation.</small>
                 </p>
             </div>
         </div>
