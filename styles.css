@@ -4030,8 +4030,13 @@ body {
 }
 
 /* ==========================================================================
-   LEGAL PAGES STYLES
+   LEGAL & STATIC PAGE STYLES
    ========================================================================== */
+
+.legal-content {
+    padding-top: 120px;
+}
+
 
 .legal-content {
     padding: var(--spacing-2xl) 0;
@@ -4040,9 +4045,7 @@ body {
 
 .legal-header {
     text-align: center;
-    margin-bottom: var(--spacing-2xl);
-    padding-bottom: var(--spacing-lg);
-    border-bottom: 1px solid var(--border-light);
+    padding-top: var(--spacing-xl);
 }
 
 .legal-header h1 {
