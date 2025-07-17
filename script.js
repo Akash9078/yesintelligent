@@ -524,12 +524,13 @@ const Analytics = {
 };
 
 // ==========================================================================
-// CONTACT FORM MODULE
+// CONTACT FORM MODULE - Enhanced for New Contact Page
 // ==========================================================================
 
 const ContactForm = {
     init: function() {
         this.bindEvents();
+        this.initFAQ();
     },
 
     bindEvents: function() {
@@ -649,67 +650,98 @@ const ContactForm = {
         return emailRegex.test(email);
     },
 
-    clearValidationErrors: function() {
-        const messageDiv = document.querySelector('#form-message');
-        if (messageDiv) {
-            messageDiv.style.display = 'none';
-        }
-    },
-
     showLoadingState: function(form) {
-        const button = form.querySelector('.contact-submit-btn');
-        const span = button.querySelector('span');
-        const originalText = span.textContent;
-        button.dataset.originalText = originalText;
-        span.textContent = 'Sending...';
-        button.querySelector('i').className = 'fas fa-spinner fa-spin';
-        button.disabled = true;
+        const submitButton = form.querySelector('.submit-button') || form.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.classList.add('loading');
+            submitButton.disabled = true;
+        }
     },
 
     hideLoadingState: function(form) {
-        const button = form.querySelector('.contact-submit-btn');
-        const span = button.querySelector('span');
-        span.textContent = button.dataset.originalText;
-        button.querySelector('i').className = 'fas fa-paper-plane';
-        button.disabled = false;
+        const submitButton = form.querySelector('.submit-button') || form.querySelector('button[type="submit"]');
+        if (submitButton) {
+            submitButton.classList.remove('loading');
+            submitButton.disabled = false;
+        }
     },
 
     showSuccessMessage: function(form, name) {
-        const messageDiv = form.querySelector('#form-message');
-        messageDiv.innerHTML = `
-            <div class="success-message">
+        const messageElement = document.getElementById('form-message');
+        if (messageElement) {
+            messageElement.className = 'form-response success';
+            messageElement.innerHTML = `
                 <i class="fas fa-check-circle"></i>
-                <strong>Thank you, ${name}!</strong><br>
-                We've received your information and will be in touch with you shortly.
-            </div>
-        `;
-        messageDiv.style.display = 'block';
-        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                Thank you, ${name}! Your message has been sent successfully. We'll get back to you within 24 hours.
+            `;
+            messageElement.style.display = 'block';
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 5000);
+        }
     },
 
     showErrorMessage: function(form) {
-        const messageDiv = form.querySelector('#form-message');
-        messageDiv.innerHTML = `
-            <div class="error-message">
+        const messageElement = document.getElementById('form-message');
+        if (messageElement) {
+            messageElement.className = 'form-response error';
+            messageElement.innerHTML = `
                 <i class="fas fa-exclamation-triangle"></i>
-                <strong>Oops!</strong> Something went wrong. Please try again or contact us directly at akashkumarnaik948@gmail.com.
-            </div>
-        `;
-        messageDiv.style.display = 'block';
+                Sorry, there was an error sending your message. Please try again or contact us directly at akashkumarnaik948@gmail.com
+            `;
+            messageElement.style.display = 'block';
+        }
     },
 
     showValidationError: function(message) {
-        const messageDiv = document.querySelector('#form-message');
-        if (messageDiv) {
-            messageDiv.innerHTML = `
-                <div class="validation-error">
-                    <i class="fas fa-exclamation-circle"></i>
-                    ${message}
-                </div>
+        const messageElement = document.getElementById('form-message');
+        if (messageElement) {
+            messageElement.className = 'form-response error';
+            messageElement.innerHTML = `
+                <i class="fas fa-exclamation-triangle"></i>
+                ${message}
             `;
-            messageDiv.style.display = 'block';
-            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            messageElement.style.display = 'block';
         }
+    },
+
+    clearValidationErrors: function() {
+        const messageElement = document.getElementById('form-message');
+        if (messageElement) {
+            messageElement.style.display = 'none';
+        }
+    },
+
+    // FAQ Accordion functionality
+    initFAQ: function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            if (question) {
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    faqItems.forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                        const otherQuestion = otherItem.querySelector('.faq-question');
+                        if (otherQuestion) {
+                            otherQuestion.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                        question.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            }
+        });
     }
 };
 

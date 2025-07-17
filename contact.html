@@ -13,21 +13,21 @@
     <meta property="og:title" content="Contact YesIntelligent - Get in Touch">
     <meta property="og:description" content="Contact YesIntelligent for AI tools recommendations, automation consulting, or partnership opportunities.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yesintelligent.onrender.com/contact">
-    <meta property="og:image" content="https://yesintelligent.onrender.com/logo.webp">
+    <meta property="og:url" content="https://yesintelligent.com/contact">
+    <meta property="og:image" content="https://yesintelligent.com/images/logo.webp">
     <meta property="og:site_name" content="YesIntelligent">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact YesIntelligent - Get in Touch">
     <meta name="twitter:description" content="Contact YesIntelligent for AI tools recommendations, automation consulting, or partnership opportunities.">
-    <meta name="twitter:image" content="https://yesintelligent.onrender.com/logo.webp">
+    <meta name="twitter:image" content="https://yesintelligent.com/images/logo.webp">
     
-    <link rel="canonical" href="https://yesintelligent.onrender.com/contact">
+    <link rel="canonical" href="https://yesintelligent.com/contact">
     <link rel="icon" type="image/webp" href="images/logo.webp">
     <link rel="apple-touch-icon" href="images/logo.webp">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     
     <!-- Google Analytics -->
@@ -73,153 +73,255 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section class="contact-hero">
+        <section class="new-contact-hero">
+            <div class="hero-background">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
+                </div>
+            </div>
             <div class="container">
-                <h1>Get in Touch</h1>
-                <p class="hero-subtitle">Have questions about AI tools or need automation advice? We're here to help!</p>
+                <div class="hero-content">
+                    <span class="hero-badge">💬 Get in Touch</span>
+                    <h1>Let's Build Something Amazing Together</h1>
+                    <p>Whether you need AI tool recommendations, automation consulting, or want to explore partnerships, we're here to help you succeed.</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">24h</span>
+                            <span class="stat-label">Response Time</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Tools Reviewed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Satisfaction Rate</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Contact Content -->
-        <section class="contact-content">
+        <!-- Contact Section -->
+        <section class="new-contact-section">
             <div class="container">
-                <div class="contact-layout">
+                <div class="contact-grid">
                     <!-- Contact Form -->
-                    <form class="contact-form" id="contactForm" method="post">
-                        <h2>Send Us a Message</h2>
-                        <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                    <div class="contact-form-wrapper">
+                        <div class="form-header">
+                            <h2>Send Us a Message</h2>
+                            <p>Tell us about your project and we'll get back to you with personalized recommendations.</p>
+                        </div>
                         
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="fullName">Full Name *</label>
-                                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                        <form class="modern-contact-form" id="contactForm" method="post">
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+                                    <div class="form-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                                    <div class="form-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-field">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                            
+                            <div class="form-group">
+                                <label for="subject">What can we help you with?</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Choose your inquiry type</option>
+                                    <option value="ai-tools">🤖 AI Tool Recommendations</option>
+                                    <option value="automation">⚙️ Automation Consulting</option>
+                                    <option value="partnership">🤝 Partnership Opportunities</option>
+                                    <option value="technical">🔧 Technical Support</option>
+                                    <option value="media">📺 Media & Press</option>
+                                    <option value="other">💬 General Inquiry</option>
+                                </select>
+                                <div class="form-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="form-field">
-                            <label for="subject">Subject *</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Select a topic...</option>
-                                <option value="general-inquiry">General Inquiry</option>
-                                <option value="tool-recommendation">Tool Recommendation</option>
-                                <option value="automation-help">Automation Consulting</option>
-                                <option value="partnership">Partnership Opportunity</option>
-                                <option value="feedback">Website Feedback</option>
-                                <option value="technical-support">Technical Support</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-field">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="6" placeholder="Tell us how we can help you..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="contact-submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>Send Message</span>
-                        </button>
-                        
-                        <div id="form-message" class="form-message" style="display: none;"></div>
-                    </form>
+                            
+                            <div class="form-group">
+                                <label for="message">Tell us more about your needs</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Describe your project, goals, or questions. The more details you provide, the better we can help you." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-button">
+                                <span class="button-text">Send Message</span>
+                                <span class="button-icon">
+                                    <i class="fas fa-paper-plane"></i>
+                                </span>
+                                <div class="button-loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                            
+                            <div id="form-message" class="form-response" style="display: none;"></div>
+                        </form>
+                    </div>
                     
-                    <!-- Contact Info Panel -->
-                    <div class="contact-info-panel">
-                        <h2>Let's Connect</h2>
-                        <p>Whether you're looking for AI tool recommendations, automation consulting, or partnership opportunities, we'd love to hear from you.</p>
+                    <!-- Contact Info -->
+                    <div class="contact-info-wrapper">
+                        <div class="contact-info-header">
+                            <h3>Other Ways to Connect</h3>
+                            <p>Choose the method that works best for you</p>
+                        </div>
                         
-                        <div class="contact-methods">
-                            <div class="contact-method-card">
-                                <div class="contact-method-icon">
+                        <div class="contact-methods-grid">
+                            <div class="contact-method">
+                                <div class="method-icon email">
                                     <i class="fas fa-envelope"></i>
                                 </div>
-                                <div class="contact-method-content">
-                                    <h3>Email Us</h3>
-                                    <p>For general inquiries and support</p>
-                                    <a href="mailto:akashkumarnaik948@gmail.com">akashkumarnaik948@gmail.com</a>
+                                <div class="method-content">
+                                    <h4>Email Support</h4>
+                                    <p>General inquiries and support</p>
+                                    <a href="mailto:akashkumarnaik948@gmail.com" class="method-link">
+                                        akashkumarnaik948@gmail.com
+                                    </a>
                                 </div>
                             </div>
                             
-                            <div class="contact-method-card">
-                                <div class="contact-method-icon">
+                            <div class="contact-method">
+                                <div class="method-icon partnership">
                                     <i class="fas fa-handshake"></i>
                                 </div>
-                                <div class="contact-method-content">
-                                    <h3>Partnerships</h3>
-                                    <p>Collaboration and business opportunities</p>
-                                    <a href="mailto:akashkumarnaik948@gmail.com">akashkumarnaik948@gmail.com</a>
+                                <div class="method-content">
+                                    <h4>Partnerships</h4>
+                                    <p>Collaboration opportunities</p>
+                                    <a href="mailto:akashkumarnaik948@gmail.com" class="method-link">
+                                        Let's collaborate
+                                    </a>
                                 </div>
                             </div>
                             
-                            <div class="contact-method-card">
-                                <div class="contact-method-icon">
+                            <div class="contact-method">
+                                <div class="method-icon github">
                                     <i class="fab fa-github"></i>
                                 </div>
-                                <div class="contact-method-content">
-                                    <h3>Open Source</h3>
-                                    <p>Check out our projects and contribute</p>
-                                    <a href="https://github.com/Akash9078/yesintelligent" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+                                <div class="method-content">
+                                    <h4>Open Source</h4>
+                                    <p>Contribute to our projects</p>
+                                    <a href="https://github.com/Akash9078/yesintelligent" target="_blank" rel="noopener" class="method-link">
+                                        View Repository
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon social">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="method-content">
+                                    <h4>Social Media</h4>
+                                    <p>Follow us for updates</p>
+                                    <div class="social-links-contact">
+                                        <a href="https://www.instagram.com/yesintelligent6" target="_blank" rel="noopener" aria-label="Instagram">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <a href="https://www.linkedin.com/company/104276210" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                        <a href="https://x.com/yesintelligent" target="_blank" rel="noopener" aria-label="Twitter">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="response-time-card">
-                            <div class="response-icon">
+                        <!-- Response Promise -->
+                        <div class="response-promise">
+                            <div class="promise-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
-                            <div class="response-content">
-                                <h3>Response Time</h3>
-                                <p>We typically respond within 24-48 hours. For urgent matters, mention "URGENT" in your subject line.</p>
+                            <div class="promise-content">
+                                <h4>Our Response Promise</h4>
+                                <p>We respond to all inquiries within 24-48 hours. For urgent matters, mark your subject line with "URGENT".</p>
                             </div>
                         </div>
                         
-                        <div class="contact-features">
-                            <div class="feature-item">
-                                <i class="fas fa-lightbulb"></i>
-                                <span>Personalized AI tool recommendations</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-cogs"></i>
-                                <span>Automation workflow consulting</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-handshake"></i>
-                                <span>Partnership opportunities</span>
-                            </div>
-                            <div class="feature-item">
-                                <i class="fas fa-question-circle"></i>
-                                <span>Technical support & guidance</span>
+                        <!-- What We Offer -->
+                        <div class="services-preview">
+                            <h4>What We Can Help With</h4>
+                            <div class="services-list">
+                                <div class="service-item">
+                                    <i class="fas fa-robot"></i>
+                                    <span>AI Tool Selection & Implementation</span>
+                                </div>
+                                <div class="service-item">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Workflow Automation Setup</span>
+                                </div>
+                                <div class="service-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Performance Optimization</span>
+                                </div>
+                                <div class="service-item">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>Strategic AI Consulting</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- FAQ Section -->
-                <div class="faq-section">
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="new-faq-section">
+            <div class="container">
+                <div class="faq-header">
                     <h2>Frequently Asked Questions</h2>
-                    <div class="faq-grid">
-                        <div class="faq-item">
-                            <h3>Do you offer personal AI tool consultations?</h3>
-                            <p>Yes! We offer personalized AI tool recommendations based on your specific needs and budget. Contact us with details about your use case.</p>
+                    <p>Find quick answers to common questions about our services</p>
+                </div>
+                
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Do you offer personalized AI tool consultations?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We provide detailed consultations based on your specific needs, budget, and use cases. Our recommendations are tailored to help you achieve your goals efficiently.</p>
                         </div>
-                        
-                        <div class="faq-item">
-                            <h3>Can you help set up automation workflows?</h3>
-                            <p>Absolutely! We provide automation consulting for platforms like Make.com, n8n, and Zapier. Reach out with your automation goals.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Can you help set up automation workflows?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely! We specialize in automation platforms like Make.com, n8n, and Zapier. We can help design, implement, and optimize workflows for your specific business needs.</p>
                         </div>
-                        
-                        <div class="faq-item">
-                            <h3>Are you interested in tool partnerships?</h3>
-                            <p>We're always open to partnerships with innovative AI tool companies. Please use our partnerships email for collaboration inquiries.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What types of partnerships do you offer?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We collaborate with AI tool companies, content creators, and technology partners. This includes tool reviews, integration partnerships, content collaboration, and affiliate programs.</p>
                         </div>
-                        
-                        <div class="faq-item">
-                            <h3>Do you accept guest posts?</h3>
-                            <p>We occasionally accept high-quality guest posts related to AI tools and automation. Please send your pitch and writing samples.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Do you provide ongoing support after consultation?</span>
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, we offer follow-up support to ensure your implementations are working correctly. We also provide updates on new tools and optimization opportunities.</p>
                         </div>
                     </div>
                 </div>
