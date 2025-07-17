@@ -4,19 +4,19 @@
     "description": "Discover the best AI tools and automation platforms for content creators and entrepreneurs",
     "icons": [
         {
-            "src": "images/favicon-16x16.png",
+            "src": "images/logo.webp",
             "sizes": "16x16",
-            "type": "image/png"
+            "type": "image/webp"
         },
         {
-            "src": "images/favicon-32x32.png",
+            "src": "images/logo.webp",
             "sizes": "32x32",
-            "type": "image/png"
+            "type": "image/webp"
         },
         {
-            "src": "images/apple-touch-icon.png",
+            "src": "images/logo.webp",
             "sizes": "180x180",
-            "type": "image/png"
+            "type": "image/webp"
         },
         {
             "src": "images/logo.webp",
