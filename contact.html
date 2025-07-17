@@ -73,45 +73,93 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section class="hero contact-hero">
+        <section class="contact-hero">
             <div class="container">
-                <div class="hero-content">
-                    <h1>Get in Touch</h1>
-                    <p class="hero-subtitle">Have questions about AI tools or need automation advice? We're here to help!</p>
-                </div>
+                <h1>Get in Touch</h1>
+                <p class="hero-subtitle">Have questions about AI tools or need automation advice? We're here to help!</p>
             </div>
         </section>
 
         <!-- Contact Content -->
         <section class="contact-content">
             <div class="container">
-                <div class="content-grid">
-                    <div class="contact-info">
+                <div class="contact-layout">
+                    <!-- Contact Form -->
+                    <form class="contact-form" id="contactForm" method="post">
+                        <h2>Send Us a Message</h2>
+                        <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                        
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic...</option>
+                                <option value="general-inquiry">General Inquiry</option>
+                                <option value="tool-recommendation">Tool Recommendation</option>
+                                <option value="automation-help">Automation Consulting</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="feedback">Website Feedback</option>
+                                <option value="technical-support">Technical Support</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="contact-submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </button>
+                        
+                        <div id="form-message" class="form-message" style="display: none;"></div>
+                    </form>
+                    
+                    <!-- Contact Info Panel -->
+                    <div class="contact-info-panel">
                         <h2>Let's Connect</h2>
                         <p>Whether you're looking for AI tool recommendations, automation consulting, or partnership opportunities, we'd love to hear from you.</p>
                         
                         <div class="contact-methods">
-                            <div class="contact-method">
-                                <i class="fas fa-envelope"></i>
-                                <div>
+                            <div class="contact-method-card">
+                                <div class="contact-method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-method-content">
                                     <h3>Email Us</h3>
                                     <p>For general inquiries and support</p>
                                     <a href="mailto:akashkumarnaik948@gmail.com">akashkumarnaik948@gmail.com</a>
                                 </div>
                             </div>
                             
-                            <div class="contact-method">
-                                <i class="fas fa-handshake"></i>
-                                <div>
+                            <div class="contact-method-card">
+                                <div class="contact-method-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div class="contact-method-content">
                                     <h3>Partnerships</h3>
                                     <p>Collaboration and business opportunities</p>
                                     <a href="mailto:akashkumarnaik948@gmail.com">akashkumarnaik948@gmail.com</a>
                                 </div>
                             </div>
                             
-                            <div class="contact-method">
-                                <i class="fab fa-github"></i>
-                                <div>
+                            <div class="contact-method-card">
+                                <div class="contact-method-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="contact-method-content">
                                     <h3>Open Source</h3>
                                     <p>Check out our projects and contribute</p>
                                     <a href="https://github.com/Akash9078/yesintelligent" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
@@ -119,80 +167,39 @@
                             </div>
                         </div>
                         
-                        <div class="response-time">
-                            <h3>Response Time</h3>
-                            <p>We typically respond to all inquiries within 24-48 hours. For urgent matters, please mention "URGENT" in your subject line.</p>
+                        <div class="response-time-card">
+                            <div class="response-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="response-content">
+                                <h3>Response Time</h3>
+                                <p>We typically respond within 24-48 hours. For urgent matters, mention "URGENT" in your subject line.</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="contact-form-section">
-                        <form class="contact-form" id="contactForm" method="post">
-                            <h2>Get in Touch</h2>
-                            <p>We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.</p>
-                            
-                            <div class="form-group">
-                                <label for="fullName">Full Name *</label>
-                                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="subject">Subject *</label>
-                                <select id="subject" name="subject" required>
-                                    <option value="">Select a topic...</option>
-                                    <option value="general-inquiry">General Inquiry</option>
-                                    <option value="tool-recommendation">Tool Recommendation</option>
-                                    <option value="automation-help">Automation Consulting</option>
-                                    <option value="partnership">Partnership Opportunity</option>
-                                    <option value="feedback">Website Feedback</option>
-                                    <option value="technical-support">Technical Support</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea id="message" name="message" rows="5" placeholder="Tell us how we can help you..." required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-paper-plane"></i>
-                                <span>Send Message</span>
-                            </button>
-                            
-                            <div id="form-message" class="form-message" style="display: none;"></div>
-                        </form>
                         
-                        <div class="contact-info-card">
-                            <h3>Why Contact Us?</h3>
-                            <div class="info-points">
-                                <div class="info-point">
-                                    <i class="fas fa-lightbulb"></i>
-                                    <span>Get personalized AI tool recommendations</span>
-                                </div>
-                                <div class="info-point">
-                                    <i class="fas fa-cogs"></i>
-                                    <span>Automation workflow consulting</span>
-                                </div>
-                                <div class="info-point">
-                                    <i class="fas fa-handshake"></i>
-                                    <span>Partnership opportunities</span>
-                                </div>
-                                <div class="info-point">
-                                    <i class="fas fa-question-circle"></i>
-                                    <span>Technical support & guidance</span>
-                                </div>
+                        <div class="contact-features">
+                            <div class="feature-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Personalized AI tool recommendations</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-cogs"></i>
+                                <span>Automation workflow consulting</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-handshake"></i>
+                                <span>Partnership opportunities</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-question-circle"></i>
+                                <span>Technical support & guidance</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- FAQ Section -->
-                <section class="faq-section">
+                <div class="faq-section">
                     <h2>Frequently Asked Questions</h2>
                     <div class="faq-grid">
                         <div class="faq-item">
@@ -215,7 +222,7 @@
                             <p>We occasionally accept high-quality guest posts related to AI tools and automation. Please send your pitch and writing samples.</p>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </section>
     </main>
