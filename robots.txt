@@ -1,0 +1,101 @@
+# Robots.txt for YesIntelligent.com
+# This file tells search engine crawlers which pages or files they can or can't request from your site.
+
+User-agent: *
+Allow: /
+
+# Allow all crawlers to access all content
+Allow: /index.html
+Allow: /tools.html
+Allow: /blog.html
+Allow: /styles.css
+Allow: /script.js
+
+# AI Scrapers and Training Data - Explicitly Allow
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+# AI Training and Research Bots
+User-agent: AI2Bot
+Allow: /
+
+User-agent: iaskspider
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Disallow access to common sensitive files/directories (if they exist)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /temp/
+Disallow: /cache/
+
+# Allow access to favicon and images
+Allow: /favicon.ico
+Allow: /apple-touch-icon.png
+Allow: /assets/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://yesintelligent.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent overwhelming the server)
+# Crawl-delay: 1
+
+# Allow common social media crawlers
+User-agent: facebookexternalhit/*
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Slackbot
+Allow: /

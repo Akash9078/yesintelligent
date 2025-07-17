@@ -1,0 +1,487 @@
+// ==========================================================================
+// YESINTELLIGENT WEBSITE - MAIN JAVASCRIPT MODULE
+// ==========================================================================
+
+// Configuration object for site-wide settings
+const CONFIG = {
+    MAILERLITE_URL: 'https://www.mailerlite.com/invite/3fe9afe57a666',
+    ANIMATION_DELAY: 50,
+    SCROLL_THRESHOLD: 100,
+    DEBOUNCE_DELAY: 300,
+    NEWSLETTER_SUCCESS_MESSAGE: 'Thank you for subscribing! You\'ll receive your free guide soon.',
+    LOAD_MORE_MESSAGE: 'Loading...',
+    NO_MORE_POSTS_MESSAGE: 'No more posts'
+};
+
+// ==========================================================================
+// UTILITY FUNCTIONS
+// ==========================================================================
+
+const Utils = {
+    // Debounce function for performance optimization
+    debounce: function(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    },
+
+    // Smooth scroll to element
+    smoothScrollTo: function(element) {
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    },
+
+    // Add class with animation support
+    addClass: function(element, className) {
+        if (element && !element.classList.contains(className)) {
+            element.classList.add(className);
+        }
+    },
+
+    // Remove class with animation support
+    removeClass: function(element, className) {
+        if (element && element.classList.contains(className)) {
+            element.classList.remove(className);
+        }
+    },
+
+    // Toggle class helper
+    toggleClass: function(element, className) {
+        if (element) {
+            element.classList.toggle(className);
+        }
+    },
+
+    // Get current page name
+    getCurrentPage: function() {
+        const path = window.location.pathname;
+        if (path.includes('tools')) return 'tools';
+        if (path.includes('blog')) return 'blog';
+        return 'home';
+    },
+
+    // Log analytics event (placeholder for future analytics integration)
+    logEvent: function(event, data = {}) {
+        console.log(`Analytics Event: ${event}`, data);
+        // Future: gtag('event', event, data);
+    }
+};
+
+// ==========================================================================
+// NAVIGATION MODULE
+// ==========================================================================
+
+const Navigation = {
+    init: function() {
+        this.bindEvents();
+        this.setupScrollEffect();
+        this.setActiveNavLink();
+    },
+
+    bindEvents: function() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Mobile menu toggle
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                Utils.toggleClass(hamburger, 'active');
+                Utils.toggleClass(navMenu, 'active');
+            });
+        }
+
+        // Close mobile menu on link click
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                Utils.removeClass(hamburger, 'active');
+                Utils.removeClass(navMenu, 'active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                Utils.smoothScrollTo(target);
+            });
+        });
+    },
+
+    setupScrollEffect: function() {
+        const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
+
+        const scrollHandler = Utils.debounce(() => {
+            if (window.scrollY > CONFIG.SCROLL_THRESHOLD) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        }, 10);
+
+        window.addEventListener('scroll', scrollHandler);
+    },
+
+    setActiveNavLink: function() {
+        const currentPage = Utils.getCurrentPage();
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            Utils.removeClass(link, 'active');
+            const href = link.getAttribute('href');
+            
+            if ((currentPage === 'home' && href === '#home') ||
+                (currentPage === 'tools' && href.includes('tools')) ||
+                (currentPage === 'blog' && href.includes('blog'))) {
+                Utils.addClass(link, 'active');
+            }
+        });
+    }
+};
+
+// ==========================================================================
+// NEWSLETTER MODULE
+// ==========================================================================
+
+const Newsletter = {
+    init: function() {
+        this.bindEvents();
+    },
+
+    bindEvents: function() {
+        const forms = document.querySelectorAll('#newsletterForm, .newsletter-form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => this.handleSubmit(e));
+        });
+    },
+
+    handleSubmit: function(e) {
+        e.preventDefault();
+        
+        const form = e.target;
+        const formData = new FormData(form);
+        const name = form.querySelector('input[type="text"]')?.value;
+        const email = form.querySelector('input[type="email"]')?.value;
+        
+        // Validation
+        if (!this.validateForm(name, email)) {
+            return;
+        }
+
+        // Log analytics event
+        Utils.logEvent('newsletter_signup', {
+            page: Utils.getCurrentPage(),
+            name: name,
+            email: email
+        });
+
+        // Show success message
+        this.showSuccessMessage(form);
+        
+        // Reset form
+        form.reset();
+    },
+
+    validateForm: function(name, email) {
+        if (!name || !email) {
+            alert('Please fill in all fields');
+            return false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            return false;
+        }
+
+        return true;
+    },
+
+    showSuccessMessage: function(form) {
+        alert(CONFIG.NEWSLETTER_SUCCESS_MESSAGE);
+        
+        // Optional: Replace alert with custom modal in the future
+        // this.showCustomModal(CONFIG.NEWSLETTER_SUCCESS_MESSAGE);
+    }
+};
+
+// ==========================================================================
+// TOOLS PAGE MODULE
+// ==========================================================================
+
+const ToolsPage = {
+    init: function() {
+        if (Utils.getCurrentPage() !== 'tools') return;
+        
+        this.bindEvents();
+        this.setupFiltering();
+    },
+
+    bindEvents: function() {
+        const searchInput = document.getElementById('searchInput');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // Search functionality with debouncing
+        if (searchInput) {
+            const debouncedSearch = Utils.debounce((searchTerm) => {
+                this.filterTools(searchTerm, this.getActiveCategory());
+            }, CONFIG.DEBOUNCE_DELAY);
+
+            searchInput.addEventListener('input', (e) => {
+                debouncedSearch(e.target.value.toLowerCase());
+            });
+        }
+
+        // Category filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.handleCategoryFilter(e.target);
+            });
+        });
+    },
+
+    setupFiltering: function() {
+        // Initialize with all tools visible
+        this.updateResultsCount();
+    },
+
+    handleCategoryFilter: function(clickedButton) {
+        // Update active state
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            Utils.removeClass(btn, 'active');
+        });
+        Utils.addClass(clickedButton, 'active');
+        
+        // Filter tools
+        const category = clickedButton.getAttribute('data-category');
+        const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+        this.filterTools(searchTerm, category);
+
+        // Log analytics
+        Utils.logEvent('tools_filter', {
+            category: category,
+            search_term: searchTerm
+        });
+    },
+
+    getActiveCategory: function() {
+        const activeButton = document.querySelector('.filter-btn.active');
+        return activeButton ? activeButton.getAttribute('data-category') : 'all';
+    },
+
+    filterTools: function(searchTerm, category) {
+        const toolCards = document.querySelectorAll('.tool-card');
+        let visibleCount = 0;
+
+        toolCards.forEach(card => {
+            const shouldShow = this.shouldShowTool(card, searchTerm, category);
+            
+            if (shouldShow) {
+                this.showToolCard(card);
+                visibleCount++;
+            } else {
+                this.hideToolCard(card);
+            }
+        });
+
+        this.updateResultsCount(visibleCount);
+    },
+
+    shouldShowTool: function(card, searchTerm, category) {
+        const cardCategory = card.getAttribute('data-category');
+        const cardTitle = card.querySelector('h3')?.textContent.toLowerCase() || '';
+        const cardDescription = card.querySelector('p')?.textContent.toLowerCase() || '';
+        
+        const matchesSearch = !searchTerm || 
+            cardTitle.includes(searchTerm) || 
+            cardDescription.includes(searchTerm);
+        
+        const matchesCategory = category === 'all' || cardCategory === category;
+        
+        return matchesSearch && matchesCategory;
+    },
+
+    showToolCard: function(card) {
+        card.style.display = 'block';
+        card.style.opacity = '0';
+        
+        setTimeout(() => {
+            card.style.opacity = '1';
+        }, CONFIG.ANIMATION_DELAY);
+    },
+
+    hideToolCard: function(card) {
+        card.style.display = 'none';
+    },
+
+    updateResultsCount: function(count = null) {
+        if (count === null) {
+            const visibleCards = Array.from(document.querySelectorAll('.tool-card'))
+                .filter(card => card.style.display !== 'none');
+            count = visibleCards.length;
+        }
+        
+        console.log(`Showing ${count} tools`);
+        // Future: Update UI with results count
+    }
+};
+
+// ==========================================================================
+// BLOG PAGE MODULE
+// ==========================================================================
+
+const BlogPage = {
+    init: function() {
+        if (Utils.getCurrentPage() !== 'blog') return;
+        
+        this.bindEvents();
+    },
+
+    bindEvents: function() {
+        const loadMoreBtn = document.querySelector('.load-more button');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => this.handleLoadMore(loadMoreBtn));
+        }
+    },
+
+    handleLoadMore: function(button) {
+        // Update button state
+        button.textContent = CONFIG.LOAD_MORE_MESSAGE;
+        button.disabled = true;
+        
+        // Log analytics
+        Utils.logEvent('blog_load_more');
+        
+        // Simulate loading (replace with actual AJAX call in the future)
+        setTimeout(() => {
+            button.textContent = CONFIG.NO_MORE_POSTS_MESSAGE;
+            button.style.opacity = '0.5';
+        }, 1000);
+    }
+};
+
+// ==========================================================================
+// ANIMATIONS MODULE
+// ==========================================================================
+
+const Animations = {
+    init: function() {
+        this.setupIntersectionObserver();
+        this.animateOnLoad();
+    },
+
+    setupIntersectionObserver: function() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateElement(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        const animateElements = document.querySelectorAll(
+            '.tool-card, .benefit-card, .post-card, .card'
+        );
+        
+        animateElements.forEach(el => {
+            this.prepareElementForAnimation(el);
+            observer.observe(el);
+        });
+    },
+
+    prepareElementForAnimation: function(element) {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    },
+
+    animateElement: function(element) {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+    },
+
+    animateOnLoad: function() {
+        // Add any page load animations here
+        document.body.style.opacity = '1';
+    }
+};
+
+// ==========================================================================
+// ANALYTICS MODULE
+// ==========================================================================
+
+const Analytics = {
+    init: function() {
+        this.trackAffiliateClicks();
+        this.trackPageViews();
+    },
+
+    trackAffiliateClicks: function() {
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[href*="http"]');
+            if (link && link.closest('.tool-card')) {
+                const toolName = link.closest('.tool-card').querySelector('h3')?.textContent;
+                
+                Utils.logEvent('affiliate_click', {
+                    tool_name: toolName,
+                    url: link.href,
+                    page: Utils.getCurrentPage()
+                });
+            }
+        });
+    },
+
+    trackPageViews: function() {
+        Utils.logEvent('page_view', {
+            page: Utils.getCurrentPage(),
+            url: window.location.href,
+            timestamp: new Date().toISOString()
+        });
+    }
+};
+
+// ==========================================================================
+// MAIN INITIALIZATION
+// ==========================================================================
+
+const YesIntelligent = {
+    init: function() {
+        // Initialize all modules when DOM is ready
+        Navigation.init();
+        Newsletter.init();
+        ToolsPage.init();
+        BlogPage.init();
+        Animations.init();
+        Analytics.init();
+        
+        console.log('YesIntelligent website initialized successfully!');
+    }
+};
+
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    YesIntelligent.init();
+});
+
+// Expose global namespace for external access if needed
+window.YesIntelligent = YesIntelligent;

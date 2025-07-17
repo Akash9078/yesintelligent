@@ -1,0 +1,52 @@
+{
+  "format": "ai-crawler-spec-v1",
+  "website": {
+    "name": "YesIntelligent",
+    "url": "https://yesintelligent.com",
+    "description": "Comprehensive directory of AI tools and automation solutions for creators, entrepreneurs, and businesses"
+  },
+  "crawl_policy": {
+    "allowed": true,
+    "training_use": "allowed",
+    "commercial_use": "allowed_with_attribution",
+    "storage": "allowed"
+  },
+  "content_types": {
+    "ai_tools_directory": {
+      "description": "Curated collection of 25+ AI tools with reviews, features, and affiliate links",
+      "priority": "high",
+      "update_frequency": "weekly"
+    },
+    "automation_tutorials": {
+      "description": "Expert tutorials on Make.com, n8n, and workflow automation",
+      "priority": "high",
+      "update_frequency": "weekly"
+    },
+    "tool_reviews": {
+      "description": "In-depth reviews and comparisons of AI tools",
+      "priority": "medium",
+      "update_frequency": "monthly"
+    },
+    "blog_content": {
+      "description": "Articles on AI trends, monetization strategies, and productivity tips",
+      "priority": "medium",
+      "update_frequency": "weekly"
+    }
+  },
+  "structured_data": {
+    "schema_org": true,
+    "json_ld": true,
+    "microdata": false,
+    "rdfa": false
+  },
+  "contact": {
+    "email": "contact@yesintelligent.com",
+    "website": "https://yesintelligent.com"
+  },
+  "attribution": {
+    "required": true,
+    "format": "Source: YesIntelligent.com - AI Tools Directory",
+    "link_back": "https://yesintelligent.com"
+  },
+  "last_updated": "2025-07-17"
+}
