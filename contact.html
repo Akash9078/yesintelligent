@@ -238,39 +238,7 @@
                             </div>
                         </div>
                         
-                        <!-- Response Promise -->
-                        <div class="response-promise">
-                            <div class="promise-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="promise-content">
-                                <h4>Our Response Promise</h4>
-                                <p>We respond to all inquiries within 24-48 hours. For urgent matters, mark your subject line with "URGENT".</p>
-                            </div>
-                        </div>
-                        
-                        <!-- What We Offer -->
-                        <div class="services-preview">
-                            <h4>What We Can Help With</h4>
-                            <div class="services-list">
-                                <div class="service-item">
-                                    <i class="fas fa-robot"></i>
-                                    <span>AI Tool Selection & Implementation</span>
-                                </div>
-                                <div class="service-item">
-                                    <i class="fas fa-cogs"></i>
-                                    <span>Workflow Automation Setup</span>
-                                </div>
-                                <div class="service-item">
-                                    <i class="fas fa-chart-line"></i>
-                                    <span>Performance Optimization</span>
-                                </div>
-                                <div class="service-item">
-                                    <i class="fas fa-lightbulb"></i>
-                                    <span>Strategic AI Consulting</span>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Removed Response Promise and What We Can Help With sections as requested -->
                     </div>
                 </div>
             </div>
@@ -324,6 +292,33 @@
                             <p>Yes, we offer follow-up support to ensure your implementations are working correctly. We also provide updates on new tools and optimization opportunities.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2 id="newsletter-title">Stay Updated with AI Automation</h2>
+                    <p>Get the latest AI tools, automation tips, and exclusive insights delivered to your inbox. Join 5,000+ creators who trust YesIntelligent.</p>
+                    <form class="newsletter-form" id="contactNewsletterForm" novalidate aria-labelledby="newsletter-title">
+                        <label for="contact-newsletter-name" class="sr-only">Your Name</label>
+                        <input type="text" id="contact-newsletter-name" name="name" placeholder="Your Name" required 
+                               aria-required="true" aria-describedby="contact-name-error">
+                        <div id="contact-name-error" class="error-message" aria-live="polite"></div>
+                        
+                        <label for="contact-newsletter-email" class="sr-only">Your Email Address</label>
+                        <input type="email" id="contact-newsletter-email" name="email" placeholder="Your Email" required 
+                               aria-required="true" aria-describedby="contact-email-error">
+                        <div id="contact-email-error" class="error-message" aria-live="polite"></div>
+                        
+                        <button type="submit" class="btn btn-primary" aria-describedby="contact-submit-desc">
+                            Subscribe
+                            <span id="contact-submit-desc" class="sr-only">Subscribe to receive weekly AI automation insights</span>
+                        </button>
+                        <div id="newsletter-message" class="newsletter-response" style="display: none;"></div>
+                    </form>
                 </div>
             </div>
         </section>

@@ -171,7 +171,7 @@ const Newsletter = {
     },
 
     bindEvents: function() {
-        const forms = document.querySelectorAll('#newsletterForm, .newsletter-form');
+        const forms = document.querySelectorAll('#newsletterForm, .newsletter-form, #contactNewsletterForm');
         forms.forEach(form => {
             form.addEventListener('submit', (e) => this.handleSubmit(e));
         });
@@ -271,14 +271,49 @@ const Newsletter = {
     },
 
     showSuccessMessage: function(form) {
-        alert(CONFIG.NEWSLETTER_SUCCESS_MESSAGE);
+        // Check if this is the contact page newsletter form
+        const isContactNewsletter = form.id === 'contactNewsletterForm';
+        
+        if (isContactNewsletter) {
+            const messageElement = document.getElementById('newsletter-message');
+            if (messageElement) {
+                messageElement.className = 'newsletter-response success';
+                messageElement.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    Thank you for subscribing! You'll receive your free AI tools guide soon.
+                `;
+                messageElement.style.display = 'block';
+                
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                }, 5000);
+            }
+        } else {
+            alert(CONFIG.NEWSLETTER_SUCCESS_MESSAGE);
+        }
         
         // Optional: Replace alert with custom modal in the future
         // this.showCustomModal(CONFIG.NEWSLETTER_SUCCESS_MESSAGE);
     },
 
     showErrorMessage: function(form) {
-        alert('Sorry, there was an error subscribing. Please try again or contact us directly.');
+        // Check if this is the contact page newsletter form
+        const isContactNewsletter = form.id === 'contactNewsletterForm';
+        
+        if (isContactNewsletter) {
+            const messageElement = document.getElementById('newsletter-message');
+            if (messageElement) {
+                messageElement.className = 'newsletter-response error';
+                messageElement.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Sorry, there was an error. Please try again or contact us directly.
+                `;
+                messageElement.style.display = 'block';
+            }
+        } else {
+            alert('Sorry, there was an error subscribing. Please try again.');
+        }
     }
 };
 
