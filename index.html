@@ -61,10 +61,10 @@
     <meta name="search-intent" content="informational, commercial, tool-comparison">#
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     
     <!-- Preconnect for Performance -->
@@ -77,6 +77,20 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2259801638030014"
+         crossorigin="anonymous"></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT58XWPDM2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TT58XWPDM2');
+    </script>
+    
     <!-- Structured Data - Organization -->
     <script type="application/ld+json">
     {
@@ -85,7 +99,7 @@
         "name": "YesIntelligent",
         "alternateName": "Yes Intelligent",
         "url": "https://yesintelligent.com",
-        "logo": "https://yesintelligent.com/images/logo.png",
+        "logo": "https://yesintelligent.com/images/logo.webp",
         "description": "Expert directory of AI tools and automation solutions for content creators and entrepreneurs",
         "founder": {
             "@type": "Person",
@@ -214,9 +228,9 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2 itemscope itemtype="https://schema.org/Organization">
-                    <span itemprop="name">YesIntelligent</span>
-                </h2>
+                <a href="/" aria-label="YesIntelligent Home">
+                    <img src="images/logo.webp" alt="YesIntelligent Logo" class="logo-img" width="150" height="40">
+                </a>
             </div>
             <ul class="nav-menu" role="menubar">
                 <li class="nav-item" role="none">
@@ -301,6 +315,22 @@
                         <p>Generate professional videos, voice overs, and social media content with cutting-edge AI technology</p>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <!-- Google AdSense Ad -->
+        <section class="ad-container" aria-label="Advertisement">
+            <div class="container">
+                <!-- yesintelligent responsive -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2259801638030014"
+                     data-ad-slot="9210321399"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </section>
 

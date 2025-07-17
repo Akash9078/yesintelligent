@@ -1,0 +1,36 @@
+{
+    "name": "YesIntelligent - AI Tools Directory",
+    "short_name": "YesIntelligent",
+    "description": "Discover the best AI tools and automation platforms for content creators and entrepreneurs",
+    "icons": [
+        {
+            "src": "images/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "images/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "images/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo.webp",
+            "sizes": "512x512",
+            "type": "image/webp",
+            "purpose": "any maskable"
+        }
+    ],
+    "theme_color": "#667eea",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "/",
+    "scope": "/",
+    "lang": "en-US",
+    "categories": ["productivity", "business", "education"]
+}

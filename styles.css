@@ -177,6 +177,33 @@ body {
     font-size: 1.5rem;
 }
 
+.nav-logo .logo-img {
+    height: 40px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
+    transition: var(--transition-normal);
+}
+
+.nav-logo .logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive logo sizing */
+@media (max-width: 768px) {
+    .nav-logo .logo-img {
+        height: 35px;
+        max-width: 130px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-logo .logo-img {
+        height: 30px;
+        max-width: 120px;
+    }
+}
+
 .nav-logo a {
     text-decoration: none;
 }
@@ -2133,5 +2160,32 @@ body {
     
     .timeline-item::before {
         left: 7px;
+    }
+}
+
+/* ==========================================================================
+   GOOGLE ADSENSE STYLING
+   ========================================================================== */
+
+.ad-container {
+    padding: var(--spacing-xl) 0;
+    background: var(--bg-light);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.ad-container .container {
+    text-align: center;
+}
+
+.adsbygoogle {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .ad-container {
+        padding: var(--spacing-lg) 0;
     }
 }
