@@ -88,4 +88,33 @@
         <priority>0.7</priority>
     </url>
 
+    <!-- Blog Articles -->
+    <url>
+        <loc>https://yesintelligent.com/blog/best-ai-tools-youtubers-2025.html</loc>
+        <lastmod>2025-01-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://yesintelligent.com/blog/automation-comparison-make-zapier-n8n.html</loc>
+        <lastmod>2025-01-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://yesintelligent.com/blog/automate-blog-writing-seo-blogify.html</loc>
+        <lastmod>2025-01-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://yesintelligent.com/blog/build-ai-agent-n8n-chatsimple.html</loc>
+        <lastmod>2025-01-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
 </urlset>

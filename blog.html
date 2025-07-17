@@ -124,32 +124,32 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" aria-label="YesIntelligent Home">
                     <img src="images/logo.webp" alt="YesIntelligent Logo" class="logo-img" width="150" height="40">
                 </a>
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html" class="nav-link" role="menuitem">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="tools.html" class="nav-link">Tools</a>
+                <li class="nav-item" role="none">
+                    <a href="tools.html" class="nav-link" role="menuitem">AI Tools</a>
                 </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link active">Blog</a>
+                <li class="nav-item" role="none">
+                    <a href="blog.html" class="nav-link active" role="menuitem" aria-current="page">Blog</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
+                <li class="nav-item" role="none">
+                    <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                 </li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
@@ -179,7 +179,7 @@
                         <span><i class="fas fa-clock"></i> 8 min read</span>
                         <span><i class="fas fa-user"></i> Akash Naik</span>
                     </div>
-                    <a href="build-ai-agent-n8n-chatsimple.html" class="btn btn-primary">Read More</a>
+                    <a href="blog/build-ai-agent-n8n-chatsimple.html" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         </div>
@@ -204,7 +204,7 @@
                             <span><i class="fas fa-calendar"></i> January 17, 2025</span>
                             <span><i class="fas fa-clock"></i> 12 min read</span>
                         </div>
-                        <a href="best-ai-tools-youtubers-2025.html" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="blog/best-ai-tools-youtubers-2025.html" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -223,7 +223,7 @@
                             <span><i class="fas fa-calendar"></i> January 10, 2025</span>
                             <span><i class="fas fa-clock"></i> 12 min read</span>
                         </div>
-                        <a href="automation-comparison-make-zapier-n8n.html" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="blog/automation-comparison-make-zapier-n8n.html" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -242,7 +242,7 @@
                             <span><i class="fas fa-calendar"></i> January 8, 2025</span>
                             <span><i class="fas fa-clock"></i> 7 min read</span>
                         </div>
-                        <a href="automate-blog-writing-seo-blogify.html" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="blog/automate-blog-writing-seo-blogify.html" class="post-link">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 

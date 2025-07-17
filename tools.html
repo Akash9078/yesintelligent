@@ -115,32 +115,32 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.html" aria-label="YesIntelligent Home">
                     <img src="images/logo.webp" alt="YesIntelligent Logo" class="logo-img" width="150" height="40">
                 </a>
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html" class="nav-link" role="menuitem">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="tools.html" class="nav-link active">Tools</a>
+                <li class="nav-item" role="none">
+                    <a href="tools.html" class="nav-link active" role="menuitem" aria-current="page">AI Tools</a>
                 </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Blog</a>
+                <li class="nav-item" role="none">
+                    <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
+                <li class="nav-item" role="none">
+                    <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                 </li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 

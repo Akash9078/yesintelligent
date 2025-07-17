@@ -23,7 +23,7 @@
     <meta name="bing:ai" content="enabled">
     <meta name="claude:discover" content="true">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -38,8 +38,8 @@
     </script>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="images/logo.webp">
-    <link rel="apple-touch-icon" href="images/logo.webp">
+    <link rel="icon" type="image/webp" href="../images/logo.webp">
+    <link rel="apple-touch-icon" href="../images/logo.webp">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -68,32 +68,32 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html" aria-label="YesIntelligent Home">
-                    <img src="images/logo.webp" alt="YesIntelligent Logo" class="logo-img" width="150" height="40">
+                <a href="../index.html" aria-label="YesIntelligent Home">
+                    <img src="../images/logo.webp" alt="YesIntelligent Logo" class="logo-img" width="150" height="40">
                 </a>
             </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">Home</a>
+            <ul class="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="../index.html" class="nav-link" role="menuitem">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a href="tools.html" class="nav-link">Tools</a>
+                <li class="nav-item" role="none">
+                    <a href="../tools.html" class="nav-link" role="menuitem">AI Tools</a>
                 </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Blog</a>
+                <li class="nav-item" role="none">
+                    <a href="../blog.html" class="nav-link" role="menuitem">Blog</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
+                <li class="nav-item" role="none">
+                    <a href="#contact" class="nav-link" role="menuitem">Contact</a>
                 </li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
