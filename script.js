@@ -256,9 +256,22 @@ const Newsletter = {
         const button = form.querySelector('button[type="submit"]');
         if (button) {
             button.disabled = true;
-            const originalText = button.textContent;
-            button.dataset.originalText = originalText;
-            button.textContent = 'Subscribing...';
+            // Only use the visible text node for the button label
+            let originalText = '';
+            for (let node of button.childNodes) {
+                if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+                    originalText = node.textContent.trim();
+                    break;
+                }
+            }
+            button.dataset.originalText = originalText || button.textContent.trim();
+            // Replace only the visible text node
+            for (let node of button.childNodes) {
+                if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+                    node.textContent = 'Subscribing...';
+                    break;
+                }
+            }
         }
     },
 
@@ -266,7 +279,13 @@ const Newsletter = {
         const button = form.querySelector('button[type="submit"]');
         if (button && button.dataset.originalText) {
             button.disabled = false;
-            button.textContent = button.dataset.originalText;
+            // Restore only the visible text node
+            for (let node of button.childNodes) {
+                if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+                    node.textContent = button.dataset.originalText;
+                    break;
+                }
+            }
         }
     },
 
