@@ -4437,7 +4437,7 @@ body {
     .legal-text {
         padding: 0 var(--spacing-md);
     }
-}
+
 
 /* Mobile Responsive - Contact Page */
 @media (max-width: 1024px) {
