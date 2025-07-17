@@ -58,7 +58,7 @@
     <meta name="claude:training-data" content="allowed">
     <meta name="knowledge-domain" content="artificial-intelligence, workflow-automation, content-creation">
     <meta name="expertise-level" content="expert-curated, tested-reviewed">
-    <meta name="search-intent" content="informational, commercial, tool-comparison">#
+    <meta name="search-intent" content="informational, commercial, tool-comparison">
     
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="images/logo.webp">
@@ -71,6 +71,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload critical images -->
+    <link rel="preload" href="images/logo.webp" as="image" type="image/webp">
     
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -228,13 +231,13 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="/" aria-label="YesIntelligent Home">
+                <a href="index.html" aria-label="YesIntelligent Home">
                     <img src="images/logo.webp" alt="YesIntelligent Logo" class="logo-img" width="150" height="40">
                 </a>
             </div>
             <ul class="nav-menu" role="menubar">
                 <li class="nav-item" role="none">
-                    <a href="#home" class="nav-link" role="menuitem" aria-current="page">Home</a>
+                    <a href="index.html" class="nav-link active" role="menuitem" aria-current="page">Home</a>
                 </li>
                 <li class="nav-item" role="none">
                     <a href="tools.html" class="nav-link" role="menuitem">AI Tools</a>

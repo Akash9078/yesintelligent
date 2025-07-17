@@ -2,6 +2,14 @@
 // YESINTELLIGENT WEBSITE - MAIN JAVASCRIPT MODULE
 // ==========================================================================
 
+// Prevent layout shift during page load
+document.documentElement.classList.add('preload');
+
+// Remove preload class after page loads
+window.addEventListener('load', () => {
+    document.documentElement.classList.remove('preload');
+});
+
 // Configuration object for site-wide settings
 const CONFIG = {
     MAILERLITE_URL: 'https://www.mailerlite.com/invite/3fe9afe57a666',
