@@ -30,15 +30,20 @@ RewriteRule ^automate-blog-writing-seo-blogify\.html$ /blog/automate-blog-writin
 RewriteRule ^build-ai-agent-n8n-chatsimple\.html$ /blog/build-ai-agent-n8n-chatsimple.html [R=301,L]
 
 
-# Redirect .html URLs to extensionless URLs (in browser/search bar)
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?]
-RewriteRule ^ %1 [R=301,L]
 
-# Serve .html files for extensionless URLs if they exist
+
+# ------------------------------------------------------------------------------
+# Extensionless URLs: Redirect all .html URLs to extensionless (any directory)
+# ------------------------------------------------------------------------------
+# Redirect any .html request to extensionless (preserve path, any depth)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^(.*)\.html$ /%1 [R=301,L]
+
+# Serve .html files for extensionless URLs if they exist (any directory)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^([^/]+)$ $1.html [L]
+RewriteRule ^(.+)$ $1.html [L]
 
 # ------------------------------------------------------------------------------
 # Error Pages
